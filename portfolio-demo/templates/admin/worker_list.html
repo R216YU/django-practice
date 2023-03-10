@@ -1,0 +1,37 @@
+{% extends "base.html" %} {% block content %}
+<section class="container mx-auto p-8">
+  <h2 class="text-xl text-center mb-2">従業員一覧</h2>
+  <p class="text-red-500 text-center mb-4">
+    従業員情報は一度削除すると元に戻せません。
+  </p>
+
+  <table class="table-auto w-full">
+    <thead class="border border-black">
+      <tr>
+        <th class="w-1/4 border-r border-black p-1">ログインID</th>
+        <th class="w-1/4 border-r border-black p-1">姓</th>
+        <th class="w-1/4 border-r border-black p-1">名</th>
+        <th class="w-1/4 p-1">削除</th>
+      </tr>
+    </thead>
+    <tbody class="border border-black">
+      {% for obj in objects %}
+      <tr>
+        <td class="text-center border-r border-black p-1">
+          <a href="{% url 'adminWorkerInfo' id=obj.pk %}">{{ obj.username }}</a>
+        </td>
+        <td class="text-center border-r border-black p-1">
+          {{ obj.first_name }}
+        </td>
+        <td class="text-center border-r border-black p-1">
+          {{ obj.last_name }}
+        </td>
+        <td class="text-center p-1">
+          <a href="{% url 'deleteWorker' id=obj.pk %}">削除する</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}

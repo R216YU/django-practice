@@ -1,0 +1,24 @@
+{% extends "base.html" %} {% block content %}
+<section class="container mx-auto p-8">
+  <h2 class="text-xl mb-4">退勤情報の追加</h2>
+
+  <div class="mb-8">
+    <p>{{ user.first_name }}{{ user.last_name }} さんの今月の退勤情報</p>
+    <p>労働時間 : {{ work_times }}</p>
+  </div>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <div class="mb-16">
+        <button
+          type="submit"
+          class="bg-blue-400 rounded py-3 px-5 hover:bg-blue-500 duration-300"
+        >
+          退勤情報を追加
+        </button>
+      </div>
+  </form>
+</section>
+{% endblock %}
